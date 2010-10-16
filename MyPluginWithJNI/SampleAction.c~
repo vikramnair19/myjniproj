@@ -1,0 +1,8 @@
+#include "mypluginwithjni_actions_SampleAction.h"
+
+
+JNIEXPORT jstring JNICALL Java_mypluginwithjni_actions_SampleAction_getNativeMessage
+  (JNIEnv * env, jobject obj)
+{
+    return (*env)->NewStringUTF(env, "Here's a native string in UTF8!");
+}
