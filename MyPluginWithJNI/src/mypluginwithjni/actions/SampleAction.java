@@ -1,9 +1,17 @@
 package mypluginwithjni.actions;
 
+import mypluginwithjni.views.RegisterView;
+
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IViewReference;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.internal.IWorkbenchGraphicConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 
 /**
@@ -17,8 +25,8 @@ import org.eclipse.jface.dialogs.MessageDialog;
 public class SampleAction implements IWorkbenchWindowActionDelegate {
 	
 	private int [] countval;
-	public native String getNativeMessage(); 
-	public native int getNativeint(int n); 
+	public static native String getNativeMessage(); 
+	public static native int getNativeint(int n); 
 	
 	
     static {
@@ -27,6 +35,8 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 	
 	
 	private IWorkbenchWindow window;
+	private String view_instance;
+	private RegisterView myview;
 	/**
 	 * The constructor.
 	 */
@@ -54,6 +64,17 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 //			message);
 		i=getNativeint(i);
 		System.out.println(i);
+		try {
+			myview = (RegisterView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView("mypluginwithjni.views.RegisterView");
+		} catch (PartInitException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		myview.populateItem();
+		
+		
+		
 		
 		
 		
