@@ -15,9 +15,12 @@ import org.eclipse.jface.dialogs.MessageDialog;
  * @see IWorkbenchWindowActionDelegate
  */
 public class SampleAction implements IWorkbenchWindowActionDelegate {
+	
+	private int [] countval;
 	public native String getNativeMessage(); 
 	public native int getNativeint(int n); 
-
+	
+	
     static {
         System.loadLibrary("sampleaction");
     }
@@ -39,16 +42,21 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 	public void run(IAction action) {
 		String message;
 		int i=0;
-		try {
-			message = getNativeMessage();
-		} catch (Throwable e) {
-			message = e.toString();
-		}
-		MessageDialog.openInformation(
-			window.getShell(),
-			"MyProjectWithJNI Plug-in",
-			message);
-		System.out.println(getNativeint(i));
+		
+//		try {
+//			message = getNativeMessage();
+//		} catch (Throwable e) {
+//			message = e.toString();
+//		}
+//		MessageDialog.openInformation(
+//			window.getShell(),
+//			"MyProjectWithJNI Plug-in",
+//			message);
+		i=getNativeint(i);
+		System.out.println(i);
+		
+		
+		
 	}
 //	public void run(IAction action) {
 //		MessageDialog.openInformation(

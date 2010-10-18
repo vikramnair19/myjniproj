@@ -26,5 +26,25 @@
          </action>
       </actionSet>
    </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="MyPluginWithJNI"
+            name="MOB Simulator">
+      </category>
+      <view
+            category="MyPluginWithJNI"
+            class="mypluginwithjni.views.RegisterView"
+            icon="icons/sample.gif"
+            id="mypluginwithjni.views.RegisterView"
+            name="Register View">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
 
 </plugin>
